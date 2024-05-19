@@ -17,12 +17,27 @@ public class StudentsEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_assessmen")
-    private AssessmenEntity assessmens;
+    private AssessmenEntity assessmen;
+
     @ManyToOne
     @JoinColumn(name = "id_group")
-    private GroupsEntity groops;
+    private GroupsEntity groups;
 
     private String name;
     private String surname;
     private String lastname;
+private  int recordBook;
+
+    @Override
+    public String toString() {
+        return "StudentsEntity{" +
+                "id=" + id +
+                ", assessmen=" + assessmen +
+                ", groups=" + groups +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", recordBook=" + recordBook +
+                '}';
+    }
 }

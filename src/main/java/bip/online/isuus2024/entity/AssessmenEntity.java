@@ -1,5 +1,6 @@
 package bip.online.isuus2024.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,8 @@ public class AssessmenEntity {
     private int assessmen;
     @ManyToOne
     @JoinColumn(name = "id_lesson")
-    private LessonsEntity lessons;
+    private LessonsEntity lesson;
+    @JsonIgnore
     @OneToMany(mappedBy = "assessmen", cascade = CascadeType.ALL)
-    private List<StudentsEntity> assessmens;
+    private List<StudentsEntity> students;
 }

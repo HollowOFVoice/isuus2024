@@ -1,5 +1,6 @@
 package bip.online.isuus2024.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,11 +17,11 @@ import java.util.List;
 @Table(name = "groups")
 public class GroupsEntity {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     private  String group;
-    @OneToMany(mappedBy = "group",cascade = CascadeType.ALL)
-    private List<StudentsEntity> groups;
-
-
+    @JsonIgnore
+    @OneToMany (mappedBy = "groups",cascade = CascadeType.ALL)
+    private List<StudentsEntity> students;
+    //не забудь про джэйсон игнор
 }

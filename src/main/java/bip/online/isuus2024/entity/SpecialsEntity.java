@@ -20,5 +20,5 @@ public class SpecialsEntity {
     private Long id;
     private String special;
     @OneToMany(mappedBy = "special",cascade = CascadeType.ALL)
-    private List<LessonsEntity> specials;
+    private List<LessonsEntity> students;
 }
