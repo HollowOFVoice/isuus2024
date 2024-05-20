@@ -1,5 +1,6 @@
 package bip.online.isuus2024.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,9 @@ public class LessonsEntity {
     @ManyToOne
     @JoinColumn(name = "id_special")
     private SpecialsEntity special;
+    @JsonIgnore
     @OneToMany(mappedBy = "lesson",cascade = CascadeType.ALL)
     private List<AssessmenEntity> assessmen;
 }
+// может просто генерировать среднюю оценку в ццелом у студента, не деля его по специальностям
+// и группам

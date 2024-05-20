@@ -23,5 +23,7 @@ public class GroupsEntity {
     @JsonIgnore
     @OneToMany (mappedBy = "groups",cascade = CascadeType.ALL)
     private List<StudentsEntity> students;
+
+
     //не забудь про джэйсон игнор
 }

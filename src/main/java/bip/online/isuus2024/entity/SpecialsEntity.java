@@ -1,5 +1,6 @@
 package bip.online.isuus2024.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class SpecialsEntity {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String special;
+    @JsonIgnore
     @OneToMany(mappedBy = "special",cascade = CascadeType.ALL)
     private List<LessonsEntity> students;
 }

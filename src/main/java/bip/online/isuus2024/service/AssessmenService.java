@@ -28,4 +28,8 @@ public class AssessmenService {
     public void update(AssessmenEntity data) {
         repo.save(data);
     }
+
+    public void delete (Long id) {
+        repo.deleteById(id);
+    }
 }
