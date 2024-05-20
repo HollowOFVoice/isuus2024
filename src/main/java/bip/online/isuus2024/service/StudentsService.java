@@ -23,10 +23,13 @@ public class StudentsService {
 //        return repo.findBy();
 //    }
 
-    public List<StudentsEntity>getStudByRecordBook(int recordBook){
+//    public List<StudentsEntity>getStudByRecordBook(int recordBook){
+//        return repo.findByRecordBook(recordBook);
+//    }
+
+    public Optional<StudentsEntity> findRecBook(Long recordBook) {
         return repo.findByRecordBook(recordBook);
     }
-
 
     public StudentsEntity  save(StudentsEntity data) {
         return repo.save(data);

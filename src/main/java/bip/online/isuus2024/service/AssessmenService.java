@@ -21,6 +21,7 @@ public class AssessmenService {
         return repo.findById(id);
     }
 
+
     public AssessmenEntity save(AssessmenEntity data) {
         return repo.save(data);
     }
@@ -29,7 +30,10 @@ public class AssessmenService {
         repo.save(data);
     }
 
-    public void delete (Long id) {
-        repo.deleteById(id);
-    }
+
+public void delete (Long id) {
+    repo.deleteById(id);
+}
+
+
 }

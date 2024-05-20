@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class LessonsController {
     private final LessonsService service;
 
-    @GetMapping("/all")
+    @GetMapping("/all")//работает
     public ResponseEntity<ListResponse<LessonsEntity>> getAll() {
         return ResponseEntity.ok(
                 new ListResponse<LessonsEntity>(true, "Список изучаемых предметов", service.findAll()));
@@ -30,11 +30,16 @@ public class LessonsController {
 //    }
 
     @PostMapping
-    public ResponseEntity<DataResponse<LessonsEntity> >save(@RequestBody LessonsEntity lesson) {
-        return ResponseEntity.ok(
-                new DataResponse<LessonsEntity>(true, "Изучаемый предмет сохранен", service.save(lesson)));
+    public ResponseEntity<BaseResponse> save(@RequestBody LessonsEntity lesson) {
+        try {
+            return ResponseEntity.ok(
+                    new DataResponse<LessonsEntity>(true, "Группа сохранена", service.save(lesson)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.ok(
+                    new BaseResponse(false, e.getMessage()));
+        }
     }
-    @PutMapping
+    @PutMapping//работает
     public ResponseEntity<BaseResponse> update(@RequestBody LessonsEntity group) {
         try {
         service.update(group);
@@ -45,7 +50,7 @@ public class LessonsController {
                 new BaseResponse(false, e.getMessage()));
     }
 }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")//работает
     public ResponseEntity<BaseResponse> delete(@PathVariable Long id) {
         try {
             service.delete(id);

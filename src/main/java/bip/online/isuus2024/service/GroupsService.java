@@ -32,4 +32,8 @@ public class GroupsService {
         repo.save(data);
     }
 
+    public void delete (Long id) {
+        repo.deleteById(id);
+    }
+
 }

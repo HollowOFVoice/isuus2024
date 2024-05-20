@@ -18,31 +18,52 @@ public class StudentsController {
 
     private final StudentsService service;
 
-    @GetMapping("/all")
+    @GetMapping("/all")// Работает
     public ResponseEntity<ListResponse<StudentsEntity>> getAll() {
         return ResponseEntity.ok(
                 new ListResponse<StudentsEntity>(true, "Список изучаемых предметов", service.findAll()));
     }
 
 
-    @GetMapping("/get")
-    public  ResponseEntity<BaseResponse> getRecordBook(@RequestParam int recBook){
-        return ResponseEntity.ok(new ListResponse(service.getStudByRecordBook(recBook)));
-    }
-
-
-//    @GetMapping
-//    public ResponseEntity<DataResponse<GroupsEntity>> by_id(@RequestParam Long id) {
-//        return ResponseEntity.ok(
-//                new DataResponse<GroupsEntity>(true, "Найден следующий автор", service.findById(id).orElseThrow()));
+//    @GetMapping("/get")// Работает
+//    public  ResponseEntity<BaseResponse> getRecordBook(@RequestParam String recBook){
+//        return ResponseEntity.ok(new ListResponse(service.getStudByRecordBook(recBook)));
 //    }
 
-    @PostMapping
-    public ResponseEntity<DataResponse<StudentsEntity>>save(@RequestBody StudentsEntity student) {
-        return ResponseEntity.ok(
-                new DataResponse<StudentsEntity>(true, "Изучаемый предмет сохранен", service.save(student)));
+
+    @GetMapping// Работает
+    public ResponseEntity<BaseResponse> by_rec(@RequestParam Long recordBook) {
+        try {
+            return ResponseEntity.ok(
+                    new DataResponse<StudentsEntity>(true, "Найден следующий ,бедолага",
+                            service.findRecBook(recordBook).orElseThrow()));
+        } catch (RuntimeException e) {
+            return ResponseEntity.ok(
+                    new BaseResponse(false, e.getMessage()));
+        }
     }
-    @PutMapping
+
+    @PostMapping
+    public ResponseEntity<BaseResponse> save(@RequestBody StudentsEntity student) {
+        try {
+            return ResponseEntity.ok(
+                    new DataResponse<StudentsEntity>(true, "Студент сохранена", service.save(student)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.ok(
+                    new BaseResponse(false, e.getMessage()));
+        }
+    }
+//    @PostMapping// Работает
+//    public ResponseEntity<DataResponse<StudentsEntity>>save(@RequestBody StudentsEntity student) {
+//        try{
+//        return ResponseEntity.ok(
+//                new DataResponse<StudentsEntity>(true, "Изучаемый предмет сохранен", service.save(student)));
+//    }catch (RuntimeException e){
+//        return ResponseEntity.ok(
+//                new BaseResponse(false, e.getMessage()));
+//        }
+//    }
+    @PutMapping// Работает
     public ResponseEntity<BaseResponse> update(@RequestBody StudentsEntity student) {
         try {
             service.update(student);
@@ -53,7 +74,7 @@ public class StudentsController {
                     new BaseResponse(false, e.getMessage()));
         }
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")// Работает
     public ResponseEntity<BaseResponse> delete(@PathVariable Long id) {
         try {
             service.delete(id);

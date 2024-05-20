@@ -18,7 +18,7 @@ public class SpecialController {
 
     private final SpecialsService service;
 
-    @GetMapping("/all")
+    @GetMapping("/all")// работает
     public ResponseEntity<ListResponse<SpecialsEntity>> getAll() {
         return ResponseEntity.ok(
                 new ListResponse<SpecialsEntity>(true, "Список спецальностей", service.findAll()));
@@ -30,12 +30,12 @@ public class SpecialController {
 //                new DataResponse<GroupsEntity>(true, "Найден следующий автор", service.findById(id).orElseThrow()));
 //    }
 
-    @PostMapping
+    @PostMapping// работает
     public ResponseEntity<DataResponse<SpecialsEntity>>save(@RequestBody SpecialsEntity special) {
         return ResponseEntity.ok(
                 new DataResponse<SpecialsEntity>(true, "Специальность сохранена", service.save(special)));
     }
-    @PutMapping
+    @PutMapping// работает
     public ResponseEntity<BaseResponse> update(@RequestBody SpecialsEntity special) {
         try {
             service.update(special);
@@ -46,7 +46,7 @@ public class SpecialController {
                     new BaseResponse(false, e.getMessage()));
         }
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")// работает
     public ResponseEntity<BaseResponse> delete(@PathVariable Long id) {
         try {
             service.delete(id);
