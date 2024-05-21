@@ -1,6 +1,7 @@
 package bip.online.isuus2024.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "lessons")
+@Schema(description = "Список изучаемых предметов")
 public class LessonsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +27,7 @@ public class LessonsEntity {
     @NotNull
     @NotBlank()
     @Pattern(regexp ="[А-Я][а-я]{1,20}")
+    @Schema(description = "Изучаемый предмет", example = "Информатика")
     private String lesson;
     @NotNull
     @ManyToOne

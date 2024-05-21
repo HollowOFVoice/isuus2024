@@ -3,6 +3,7 @@ package bip.online.isuus2024.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,13 +22,16 @@ import java.util.List;
 @AllArgsConstructor
 
 @Table(name = "groupss")
+@Schema(description = "Список групп")
+
 public class GroupsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     @NotNull
     @NotBlank()
-    @Pattern(regexp ="[А-Я][а-я]{1,20}")
+    @Pattern(regexp ="[А-Я][а-я][0-9]{1,20}")
+    @Schema(description = "Название группы", example = "ИС3")
     private  String groups;
     @JsonIgnore
     @OneToMany (mappedBy = "group",cascade = CascadeType.ALL)

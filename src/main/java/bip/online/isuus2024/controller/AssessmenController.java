@@ -2,32 +2,56 @@ package bip.online.isuus2024.controller;
 
 import bip.online.isuus2024.entity.AssessmenEntity;
 import bip.online.isuus2024.entity.GroupsEntity;
+import bip.online.isuus2024.entity.StudentsEntity;
 import bip.online.isuus2024.responce.BaseResponse;
 import bip.online.isuus2024.responce.DataResponse;
 import bip.online.isuus2024.responce.ListResponse;
 import bip.online.isuus2024.service.AssessmenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name="Оценки", description="Содержит методы для работы с оценками ")
 @RestController
 @RequestMapping("api/v1/assessmen")
 @AllArgsConstructor
 public class AssessmenController {
     private final AssessmenService service;
-
+    @Operation(
+            summary = "Вывод Всех оценок",
+            description = "Позволяет вывести все оценки, что есть в базе"
+    )
     @GetMapping("/all")// работает
     public ResponseEntity<ListResponse<AssessmenEntity>> getAll() {
         return ResponseEntity.ok(
                 new ListResponse<AssessmenEntity>(true, "Список оценок", service.findAll()));
     }
 
+    @Operation(
+            summary = "Вывод средней оценки",
+            description = "Позволяет вывести среднюю оценку студента"
+    )
+    @GetMapping("/avg")// работает
+    public ResponseEntity<Long> seredka() {
+        return ResponseEntity.ok( service.sredniy());
+    }
+
+
+    @Operation(
+            summary = "Добавить оценку",
+            description = "Позволяет добавлять оценку в базу"
+    )
     @PostMapping//работает
     public ResponseEntity<DataResponse<AssessmenEntity>> save(@RequestBody AssessmenEntity assessmen) {
         return ResponseEntity.ok(
                 new DataResponse<AssessmenEntity>(true, "Группа сохранена", service.save(assessmen)));
     }
-
+ @Operation(
+        summary = "Изменить оценку",
+        description = "Позволяет редактировать и изменять оценку"
+)
     @PutMapping//работает
     public ResponseEntity<BaseResponse> update(@RequestBody AssessmenEntity assessmen) {
         try {
@@ -41,7 +65,10 @@ public class AssessmenController {
         }
     }
 
-
+    @Operation(
+            summary = "Удалить  оценку",
+            description = "Позволяет удалить оценку из базы"
+    )
     @DeleteMapping("/{id}")//работает
     public ResponseEntity<BaseResponse> delete(@PathVariable Long id) {
         try {

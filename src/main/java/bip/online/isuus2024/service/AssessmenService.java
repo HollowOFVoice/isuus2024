@@ -35,5 +35,9 @@ public void delete (Long id) {
     repo.deleteById(id);
 }
 
+public Long sredniy(){
+      return   repo.getAvg();
+}
+
 
 }
