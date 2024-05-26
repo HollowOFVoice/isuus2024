@@ -25,7 +25,7 @@ public class AssessmenEntity {
     private  Long id;
 
     @NotNull
-    @Schema(description = "оценка студента", example = "Альбертович")
+    @Schema(description = "оценка студента", example = "5")
     private int assessmen;
 
     @NotNull
@@ -33,7 +33,7 @@ public class AssessmenEntity {
     @JoinColumn(name = "id_lesson")
     private LessonsEntity lesson;
 
-    @NotNull
+
     @JsonIgnore
     @OneToMany(mappedBy = "assessmen", cascade = CascadeType.ALL)
     private List<StudentsEntity> students;

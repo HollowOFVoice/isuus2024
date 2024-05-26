@@ -2,6 +2,7 @@ package bip.online.isuus2024.controller;
 
 import bip.online.isuus2024.entity.AssessmenEntity;
 import bip.online.isuus2024.entity.GroupsEntity;
+import bip.online.isuus2024.entity.LessonsEntity;
 import bip.online.isuus2024.entity.StudentsEntity;
 import bip.online.isuus2024.responce.BaseResponse;
 import bip.online.isuus2024.responce.DataResponse;
@@ -29,24 +30,37 @@ public class AssessmenController {
                 new ListResponse<AssessmenEntity>(true, "Список оценок", service.findAll()));
     }
 
-    @Operation(
+//    @Operation(
+//            summary = "Вывод средней оценки",
+//            description = "Позволяет вывести среднюю оценку студента"
+//    )
+//    @GetMapping("/avg")// работает
+//    public ResponseEntity<Long> seredka() {
+//        return ResponseEntity.ok( service.sredniy());
+//    }
+
+        @Operation(
             summary = "Вывод средней оценки",
             description = "Позволяет вывести среднюю оценку студента"
     )
     @GetMapping("/avg")// работает
-    public ResponseEntity<Long> seredka() {
-        return ResponseEntity.ok( service.sredniy());
+    public ResponseEntity<Double> seredka(Long groupId) {
+        return ResponseEntity.ok( service.findAverageAss(groupId));
     }
-
 
     @Operation(
             summary = "Добавить оценку",
             description = "Позволяет добавлять оценку в базу"
     )
-    @PostMapping//работает
-    public ResponseEntity<DataResponse<AssessmenEntity>> save(@RequestBody AssessmenEntity assessmen) {
-        return ResponseEntity.ok(
-                new DataResponse<AssessmenEntity>(true, "Группа сохранена", service.save(assessmen)));
+    @PostMapping
+    public ResponseEntity<BaseResponse> save(@RequestBody AssessmenEntity assessmen) {
+        try {
+            return ResponseEntity.ok(
+                    new DataResponse<AssessmenEntity>(true, "Оценка сохранена", service.save(assessmen)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.ok(
+                    new BaseResponse(false, e.getMessage()));
+        }
     }
  @Operation(
         summary = "Изменить оценку",

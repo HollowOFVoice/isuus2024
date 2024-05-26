@@ -3,6 +3,7 @@ package bip.online.isuus2024.service;
 import bip.online.isuus2024.entity.AssessmenEntity;
 import bip.online.isuus2024.repository.AssesmenRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,9 +36,13 @@ public void delete (Long id) {
     repo.deleteById(id);
 }
 
-public Long sredniy(){
-      return   repo.getAvg();
-}
+//public Long sredniy(){
+//      return   repo.getAvg();
+//}
 
+
+    public Double findAverageAss(@Param("id") Long groupId) {
+        return repo.findAverageAssessmenByGroupId(groupId);
+}
 
 }

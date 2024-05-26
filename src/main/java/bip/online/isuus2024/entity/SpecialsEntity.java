@@ -26,7 +26,7 @@ public class SpecialsEntity {
     private Long id;
     @NotNull
     @NotBlank()
-    @Pattern(regexp ="[А-Я][а-я][A-z][a-z]{1,20}")
+    @Pattern(regexp ="[А-Я][а-я]{1,20}")
     @Schema(description = "Название специальности", example = "WebDesign")
     private String special;
     @JsonIgnore

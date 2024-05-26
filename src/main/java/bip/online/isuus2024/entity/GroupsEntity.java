@@ -30,7 +30,7 @@ public class GroupsEntity {
     private  Long id;
     @NotNull
     @NotBlank()
-    @Pattern(regexp ="[А-Я][а-я][0-9]{1,20}")
+    @Pattern(regexp ="[А-Я][а-я]{1,20}")
     @Schema(description = "Название группы", example = "ИС3")
     private  String groups;
     @JsonIgnore

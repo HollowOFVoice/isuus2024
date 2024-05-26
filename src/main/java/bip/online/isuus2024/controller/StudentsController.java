@@ -1,11 +1,9 @@
 package bip.online.isuus2024.controller;
 
-import bip.online.isuus2024.entity.LessonsEntity;
 import bip.online.isuus2024.entity.StudentsEntity;
 import bip.online.isuus2024.responce.BaseResponse;
 import bip.online.isuus2024.responce.DataResponse;
 import bip.online.isuus2024.responce.ListResponse;
-import bip.online.isuus2024.service.LessonsService;
 import bip.online.isuus2024.service.StudentsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,8 +30,8 @@ public class StudentsController {
 
 
 //    @GetMapping("/get")// Работает
-//    public  ResponseEntity<BaseResponse> getRecordBook(@RequestParam String recBook){
-//        return ResponseEntity.ok(new ListResponse(service.getStudByRecordBook(recBook)));
+//    public  ResponseEntity<BaseResponse> getRecordBook(@RequestParam Long student){
+//        return ResponseEntity.ok(new ListResponse(service.getRecor(student)));
 //    }
 
     @Operation(
@@ -51,6 +49,16 @@ public class StudentsController {
                     new BaseResponse(false, e.getMessage()));
         }
     }
+
+//    @Operation(
+//            summary = "Вывод средней оценки",
+//            description = "Позволяет вывести среднюю оценку студента"
+//    )
+//    @GetMapping("/avg")// работает
+//    public ResponseEntity<Double> seredka(Long groupId) {
+//        return ResponseEntity.ok( service.findAverageAss(groupId));
+//    }
+
 
     @Operation(
             summary = "Добавить Студента",
