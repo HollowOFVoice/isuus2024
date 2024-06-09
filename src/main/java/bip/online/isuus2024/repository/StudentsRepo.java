@@ -11,17 +11,6 @@ import java.util.Optional;
 
 
 public interface StudentsRepo extends JpaRepository<StudentsEntity,Long> {
-Optional<StudentsEntity>findByRecordBook(Long recordBook);
-   // List<StudentsEntity>findByRecordBook(Long recbook);
-
-
-//    @Query(value =  "SELECT AVG (assessmen) FROM assessmens",nativeQuery = true)
-//    Long getAvg();
-
-//    @Query(value ="SELECT AVG(assessmen) FROM students  "
-//            + "JOIN assessmens ON id_assessment = id "
-//            + "WHERE id_group = groupId", nativeQuery = true)
-//    Double findAverageAssessmentByGroupId(@Param("groupId") Long groupId);
 
 
 }

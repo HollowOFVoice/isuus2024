@@ -1,8 +1,8 @@
 package bip.online.isuus2024.service;
 
-import bip.online.isuus2024.entity.SpecialsEntity;
+
 import bip.online.isuus2024.entity.StudentsEntity;
-import bip.online.isuus2024.repository.SpecialsRepo;
+
 import bip.online.isuus2024.repository.StudentsRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
@@ -20,24 +20,7 @@ public class StudentsService {
         return repo.findAll();
     }
 
-//    public Optional<StudentsEntity> findByRecordBook(int RecordBook) {
-//        return repo.findBy();
-//    }
 
-//    public List<StudentsEntity>getStudByRecordBook(int recordBook){
-//        return repo.findByRecordBook(recordBook);
-//    }
-
-    public Optional<StudentsEntity> findRecBook(Long recordBook) {
-        return repo.findByRecordBook(recordBook);
-    }
-//    public List<StudentsEntity>getRecor(Long recBook){
-//        return repo.findByRecordBook(recBook);
-//    }
-
-//    public Double findAverageAss(@Param("groupId") Long groupId) {
-//        return repo.findAverageAssessmentByGroupId(groupId);
-//    }
 
     public StudentsEntity  save(StudentsEntity data) {
         return repo.save(data);

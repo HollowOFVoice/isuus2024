@@ -29,43 +29,16 @@ public class StudentsController {
     }
 
 
-//    @GetMapping("/get")// Работает
-//    public  ResponseEntity<BaseResponse> getRecordBook(@RequestParam Long student){
-//        return ResponseEntity.ok(new ListResponse(service.getRecor(student)));
-//    }
-
-    @Operation(
-            summary = "Поиск студента по номеру зачетной книжки",
-            description = "Позволяет найти студента в базе по его номеру зачётной книжки"
-    )
-    @GetMapping// Работает
-    public ResponseEntity<BaseResponse> by_rec(@RequestParam Long recordBook) {
-        try {
-            return ResponseEntity.ok(
-                    new DataResponse<StudentsEntity>(true, "Найден следующий ,бедолага",
-                            service.findRecBook(recordBook).orElseThrow()));
-        } catch (RuntimeException e) {
-            return ResponseEntity.ok(
-                    new BaseResponse(false, e.getMessage()));
-        }
-    }
-
-//    @Operation(
-//            summary = "Вывод средней оценки",
-//            description = "Позволяет вывести среднюю оценку студента"
-//    )
-//    @GetMapping("/avg")// работает
-//    public ResponseEntity<Double> seredka(Long groupId) {
-//        return ResponseEntity.ok( service.findAverageAss(groupId));
-//    }
 
 
-    @Operation(
-            summary = "Добавить Студента",
-            description = "Позволяет добавлять нового студента в базу"
-    )
+
+
+
+
+
+
     @PostMapping
-    public ResponseEntity<BaseResponse> save(@RequestBody StudentsEntity student) {
+    public ResponseEntity<BaseResponse> save( StudentsEntity student) {
         try {
             return ResponseEntity.ok(
                     new DataResponse<StudentsEntity>(true, "Студент сохранена", service.save(student)));
@@ -74,16 +47,7 @@ public class StudentsController {
                     new BaseResponse(false, e.getMessage()));
         }
     }
-//    @PostMapping// Работает
-//    public ResponseEntity<DataResponse<StudentsEntity>>save(@RequestBody StudentsEntity student) {
-//        try{
-//        return ResponseEntity.ok(
-//                new DataResponse<StudentsEntity>(true, "Изучаемый предмет сохранен", service.save(student)));
-//    }catch (RuntimeException e){
-//        return ResponseEntity.ok(
-//                new BaseResponse(false, e.getMessage()));
-//        }
-//    }
+
 
     @Operation(
             summary = "Изменить информацию о студенте",

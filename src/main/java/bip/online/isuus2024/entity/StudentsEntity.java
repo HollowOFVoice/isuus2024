@@ -21,37 +21,16 @@ public class StudentsEntity {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_assessmen")
-    private AssessmenEntity assessmen;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_group")
-    private GroupsEntity group;
 
-    @NotNull
-    @NotBlank()
-    @Pattern(regexp ="[А-Я][а-я]{1,20}")
-    @Schema(description = "Имя Студента", example = "Валерка")
     private String name;
 
-    @NotNull
-    @NotBlank()
-    @Pattern(regexp ="[А-Я][а-я]{1,20}")
-    @Schema(description = "Фамилия Студента", example = "Жмышенко")
+
     private String surname;
 
-    @NotNull
-    @NotBlank()
-    @Pattern(regexp ="[А-Я][а-я]{1,20}")
-    @Schema(description = "Отчество студента", example = "Альбертович")
+
     private String lastname;
 
-    @NotNull
-    @Schema(description = "Номер зачетной книжки, записывается лишь цифрами", example = "98647363451")
-private  Long recordBook;
 
 //    @Override
 //    public String toString() {
